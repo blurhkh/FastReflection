@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{09BD7D73-779A-45FB-8295-01DA1CB2EFDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReflection", "src\FastReflection\FastReflection.csproj", "{562E4364-6772-422C-8571-5639EDE86399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReflection", "src\FastReflection\FastReflection.csproj", "{562E4364-6772-422C-8571-5639EDE86399}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6D1FA513-22EE-46A4-B696-4805EE6072B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReflection.Test", "test\FastReflection.Test\FastReflection.Test.csproj", "{A6BBA6BF-6E85-4E68-85DB-74459E59C4AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReflection.Test", "test\FastReflection.Test\FastReflection.Test.csproj", "{A6BBA6BF-6E85-4E68-85DB-74459E59C4AC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReflection.Performance", "test\FastReflection.Performance\FastReflection.Performance.csproj", "{FD95B9DB-16EB-4D25-A3BB-596EFC006163}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{A6BBA6BF-6E85-4E68-85DB-74459E59C4AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6BBA6BF-6E85-4E68-85DB-74459E59C4AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6BBA6BF-6E85-4E68-85DB-74459E59C4AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD95B9DB-16EB-4D25-A3BB-596EFC006163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD95B9DB-16EB-4D25-A3BB-596EFC006163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD95B9DB-16EB-4D25-A3BB-596EFC006163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD95B9DB-16EB-4D25-A3BB-596EFC006163}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{562E4364-6772-422C-8571-5639EDE86399} = {09BD7D73-779A-45FB-8295-01DA1CB2EFDC}
 		{A6BBA6BF-6E85-4E68-85DB-74459E59C4AC} = {6D1FA513-22EE-46A4-B696-4805EE6072B7}
+		{FD95B9DB-16EB-4D25-A3BB-596EFC006163} = {6D1FA513-22EE-46A4-B696-4805EE6072B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7990B35-6BB6-428C-8845-CE81F9303CCC}

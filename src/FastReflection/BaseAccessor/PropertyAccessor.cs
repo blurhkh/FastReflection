@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -47,6 +48,11 @@ namespace FastReflection.BaseAccessor
                 il.Emit(OpCodes.Callvirt, getMethodInfo);
             }
 
+            // 如果返回值是值类型，需要装箱
+            if (getMethodInfo.ReturnType.IsValueType)
+            {
+                il.Emit(OpCodes.Box, getMethodInfo.ReturnType);
+            }
 
             il.Emit(OpCodes.Ret);
 
@@ -63,17 +69,19 @@ namespace FastReflection.BaseAccessor
 
             var setMethodInfo = info.SetMethod;
 
-            if (setMethodInfo.IsStatic)
+            if (setMethodInfo.IsStatic == false) il.Emit(OpCodes.Ldarg_0);
+
+            il.Emit(OpCodes.Ldarg_1);
+
+            // 如果参数是值类型，需要拆箱
+            var paramType = setMethodInfo.GetParameters().Single().ParameterType;
+            if (paramType.IsValueType)
             {
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Call, setMethodInfo);
+                il.Emit(OpCodes.Unbox_Any, paramType);
             }
-            else
-            {
-                il.Emit(OpCodes.Ldarg_0);
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Callvirt, setMethodInfo);
-            }
+
+            il.Emit(setMethodInfo.IsStatic ? OpCodes.Call : OpCodes.Callvirt, setMethodInfo);
+
             il.Emit(OpCodes.Ret);
 
             return (Action<object, object>)dm.CreateDelegate(typeof(Action<object, object>));

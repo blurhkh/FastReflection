@@ -35,14 +35,21 @@ namespace FastReflection.BaseAccessor
             if (info.IsStatic)
             {
                 il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Stsfld, info);
             }
             else
             {
                 il.Emit(OpCodes.Ldarg_0);
                 il.Emit(OpCodes.Ldfld, info);
-                il.Emit(OpCodes.Stfld, info);
             }
+
+            // 如果是值类型，需要拆箱
+            if (info.FieldType.IsValueType)
+            {
+                il.Emit(OpCodes.Unbox_Any, info.FieldType);
+            }
+
+            il.Emit(info.IsStatic ? OpCodes.Stsfld : OpCodes.Stfld, info);
+
             il.Emit(OpCodes.Ret);
 
             return (Action<object, object>)dm.CreateDelegate(typeof(Action<object, object>));
@@ -63,6 +70,13 @@ namespace FastReflection.BaseAccessor
                 il.Emit(OpCodes.Ldarg_0);
                 il.Emit(OpCodes.Ldfld, info);
             }
+
+            // 如果是值类型，需要装箱
+            if (info.FieldType.IsValueType)
+            {
+                il.Emit(OpCodes.Box, info.FieldType);
+            }
+
             il.Emit(OpCodes.Ret);
 
             return (Func<object, object>)dm.CreateDelegate(typeof(Func<object, object>));

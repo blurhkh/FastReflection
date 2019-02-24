@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleApp1
+namespace FastReflection.Test
 {
-    public static class Test
+    public class FieldAccessorTest
     {
-
-        public static string Prop;
     }
 }
